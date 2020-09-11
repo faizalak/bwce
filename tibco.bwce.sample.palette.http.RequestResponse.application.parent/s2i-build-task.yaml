@@ -23,7 +23,7 @@ spec:
       - '-t'
       - '$(outputs.resources.image.url)'
       - '.'
-    workingDir: /workspace/tibco.bwce.sample.palette.http.RequestResponse.application/target/docker/quay.io/fabdulkh/samplehttpbwce/build
+    workingDir: /workspace/tibco.bwce.sample.palette.http.RequestResponse.application/target
     securityContext:
       privileged: true
       runAsUser: 0
