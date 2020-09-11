@@ -1,4 +1,4 @@
-Manifest-Version: 1.0.0.202009101612
+Manifest-Version: 1.0.0.202009102058
 Bundle-SymbolicName: tibco.bwce.sample.palette.http.RequestResponse
 Bundle-ManifestVersion: 2
 TIBCO-BW-Edition: bwcf
@@ -13,7 +13,7 @@ TIBCO-BWCE-Edition-Target: cf
 TIBCO-BW-ConfigProfile: META-INF/default.substvar
 TIBCO-BW-Version: 1.2.0 V19 2014-10-01
 Bundle-Name: Tibco Bw Sample Palette Http RequestResponse Module
-Bundle-Version: 1.0.0.202009101612
+Bundle-Version: 1.0.0.202009102058
 Bundle-ClassPath: .
 TIBCO-BW-ApplicationModule: META-INF/module.bwm
 TIBCO-BW-JobSharedVariables: META-INF/module.jsv

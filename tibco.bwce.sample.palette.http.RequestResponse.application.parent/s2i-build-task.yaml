@@ -1,0 +1,21 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  name: bwce-build
+spec:
+  inputs:
+    resources:
+    - name: workspace-git
+      targetPath: /
+      type: git
+  outputs:
+    resources:
+      - name: image
+        type: image
+  steps:
+  - name: build
+    image: maven:3.6.0-jdk-8-slim
+    command:
+    - /usr/bin/mvn
+    args:
+    - clean package initialize docker:build docker:push
