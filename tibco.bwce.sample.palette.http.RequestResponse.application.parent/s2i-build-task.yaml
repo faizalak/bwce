@@ -21,12 +21,27 @@ spec:
       - 'bud'
       - '--layers'
       - '-t'
-      - '$(outputs.resources.image)'
+      - '$(outputs.resources.image.url)'
       - '.'
     workingDir: /workspace/tibco.bwce.sample.palette.http.RequestResponse.application/target/docker/quay.io/fabdulkh/samplehttpbwce/build
     securityContext:
       privileged: true
       runAsUser: 0
+  - name: list
+    image: quay.io/buildah/stable
+    command: 
+      - "buildah"
+    args:
+      - 'images'
+  - name: push
+    image: quay.io/buildah/stable
+    command: 
+      - "buildah"
+    args:
+      - 'push'
+      - '$(outputs.resources.image.url)'
+      - 'docker://$(outputs.resources.image.url)'
+
 
 
  # - name: build
