@@ -6,4 +6,4 @@ spec:
   type: git
   params:
   - name: url
-    value: https://github.com/sclorg/nodejs-ex
+    value: https://github.com/faizalak/bwce.git

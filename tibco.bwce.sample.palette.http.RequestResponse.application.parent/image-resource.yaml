@@ -1,0 +1,9 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineResource
+metadata:
+  name: bwce-image
+spec:
+  type: image
+  params:
+  - name: url
+    value: default-route-openshift-image-registry.apps.cluster-plano-d394.plano-d394.example.opentlc.com/bwce/samplehttp

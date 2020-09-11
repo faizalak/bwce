@@ -14,8 +14,24 @@ spec:
         type: image
   steps:
   - name: build
-    image: maven:3.6.0-jdk-8-slim
-    command:
-    - /usr/bin/mvn
+    image: quay.io/buildah/stable
+    command: 
+      - "buildah"
     args:
-    - clean package initialize docker:build docker:push
+      - 'bud'
+      - '--layers'
+      - '-t'
+      - '$(outputs.resources.image)'
+      - '.'
+    workingDir: /workspace/tibco.bwce.sample.palette.http.RequestResponse.application/target/docker/quay.io/fabdulkh/samplehttpbwce/build
+    securityContext:
+      privileged: true
+      runAsUser: 0
+
+
+ # - name: build
+ #   image: maven:3.6.0-jdk-8-slim
+ #   command: ['/usr/bin/mvn','clean','package','initialize','docker:build','docker:push']
+ #   workingDir: /workspace/tibco.bwce.sample.palette.http.RequestResponse.application.parent
+    #args:
+    #- clean package initialize docker:build docker:push
