@@ -5,9 +5,9 @@ metadata:
   name: deploy-pipeline
 spec:
   resources:
-  - name: app-git
+  - name: workspace-git
     type: git
-  - name: app-image
+  - name: bwce-image
     type: image
   tasks:
   - name: build
@@ -18,11 +18,11 @@ spec:
         value: "false"
     resources:
       inputs:
-      - name: source
-        resource: app-git
+      - name: workspace-git
+        resource: workspace-git
       outputs:
       - name: image
-        resource: app-image
+        resource: bwce-image
   - name: deploy
     taskRef:
       name: openshift-client
@@ -30,4 +30,4 @@ spec:
       - build
     params:
     - name: ARGS
-      value: "rollout latest bwce samplehttp"
+      value: "new-app samplehttp"

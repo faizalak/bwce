@@ -8,6 +8,10 @@ spec:
     - name: workspace-git
       targetPath: /
       type: git
+    params:
+    - name: TLSVERIFY
+      description: Verify the TLS on the registry endpoint (for push/pull to a non-TLS registry)
+      default: "false"
   outputs:
     resources:
       - name: image
@@ -19,29 +23,45 @@ spec:
       - "buildah"
     args:
       - 'bud'
+      - '--tls-verify=$(inputs.params.TLSVERIFY)'
       - '--layers'
       - '-t'
       - '$(outputs.resources.image.url)'
       - '.'
     workingDir: /workspace/tibco.bwce.sample.palette.http.RequestResponse.application/target
+    volumeMounts:
+    - name: varlibcontainers
+      mountPath: /var/lib/containers
     securityContext:
       privileged: true
       runAsUser: 0
+  - name: diditwork
+    image: busybox
+    command: ['ls','-ltr',"/workspace"]
   - name: list
     image: quay.io/buildah/stable
     command: 
       - "buildah"
     args:
       - 'images'
+    volumeMounts:
+    - name: varlibcontainers
+      mountPath: /var/lib/containers
   - name: push
     image: quay.io/buildah/stable
     command: 
       - "buildah"
     args:
       - 'push'
+      - '--tls-verify=$(inputs.params.TLSVERIFY)'
       - '$(outputs.resources.image.url)'
       - 'docker://$(outputs.resources.image.url)'
-
+    volumeMounts:
+    - name: varlibcontainers
+      mountPath: /var/lib/containers
+  volumes:
+    - name: varlibcontainers
+      emptyDir: {}
 
 
  # - name: build

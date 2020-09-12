@@ -6,4 +6,4 @@ spec:
   type: image
   params:
   - name: url
-    value: default-route-openshift-image-registry.apps.cluster-plano-d394.plano-d394.example.opentlc.com/bwce/samplehttp
+    value: ${OPENSHIFT_IMAGE_REGISTRY}/${PROJECT_NAMESPACE}/samplehttp
